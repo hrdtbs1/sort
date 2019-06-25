@@ -4,6 +4,7 @@
 #define N 2999
 
 int A[N];
+int B[(N+4)/5];
 
 // *p と *q の値を入れ替える関数
 void swap(int *p, int *q){
@@ -15,11 +16,19 @@ void swap(int *p, int *q){
 
 int quick_select(int A[], int n, int k){
   int i, j, pivot;
-
-// 真ん中の要素をピボットとする
-  pivot = A[n/2];
-  A[n/2] = A[0];
-  A[0] = pivot;
+    if(n<5){
+        pivot = A[0];
+    }
+    else {
+        int h;
+        for(h = 0; h < n/5; h++){
+            B[h]=quick_select(A+5*h, 5, 2);
+        }
+        if(n%5 != 0){
+            B[h+1]=quick_select(A+5*(h+1), n%5, (n%5)/2);
+        }
+        pivot = quick_select(B, (n+4)/5, (n+4)/10);
+    }
   for(i = j = 1; i < n; i++){
     if(A[i] <= pivot){
       swap(A+i, A+j);
@@ -31,6 +40,7 @@ int quick_select(int A[], int n, int k){
   else if(j < k+1) return quick_select(A+j, n-j, k-j);
   else return quick_select(A+1, j-1, k);
 }
+
 
 
 int main(){
