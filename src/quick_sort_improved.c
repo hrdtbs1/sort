@@ -18,6 +18,27 @@ void swap(int *p, int *q){
 A[0], A[1], ..., A[n-1] をソートして昇順に書き換える関数
 */
 void quick_sort(int A[], int n){
+    if(n<=1) return;
+    int i,j,eq,pivot;
+    pivot=A[0];
+    for(i=j=1;i<n;i++){
+        if(A[i] == pivot){
+            swap(A+i, A+j);
+            j++;
+        }
+    }
+    eq=j;
+    for(i=j=eq;i<n;i++){
+        if(A[i]<pivot){
+            swap(A+i, A+j);
+            j++;
+        }
+    }
+    for(i=eq;i<j;i++){
+        swap(A+(i-eq),A+i);
+    }
+    quick_sort(A,j-eq);
+    quick_sort(A+j,n-j);
 }
 
 int main(){
