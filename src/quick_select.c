@@ -44,8 +44,8 @@ int main(){
     A[i] = (long long int) A[i-1] * A[1] % N;
   }
   for(i=0;i<N;i++){
-//    if(quick_select(A, N, i) != i) printf("ERROR %d %d\n", i, quick_select(A, N, i));
-    printf("%d th element is %d\n", i, quick_select(A, N, i));
+   if(quick_select(A, N, i) != i) printf("ERROR %d %d\n", i, quick_select(A, N, i));
+    //printf("%d th element is %d\n", i, quick_select(A, N, i));
    fflush(stdout);
   }
 }
