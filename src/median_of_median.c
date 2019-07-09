@@ -4,7 +4,7 @@
 #define N 2999
 
 int A[N];
-int B[(N+4)/5];
+
 
 // *p と *q の値を入れ替える関数
 void swap(int *p, int *q){
@@ -29,6 +29,7 @@ int quick_select(int A[], int n, int k){
         else return quick_select(A+1, j-1, k);
     }
     else{
+        int B[(N+4)/5];
         int h,g,f;
         for(h = 0; h < n/5; h++){
             B[h]=quick_select(A+5*h, 5, 2);
